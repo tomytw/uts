@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UTS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<body>
+
+	
+
+	<div data-role="page" id="page1">
+		<div data-role="header" style="overflow: hidden;">
+			<h1>Input Pinjaman</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#page1" class="ui-btn-active">Input Pinjaman</a></li>
+					<li><a href="#page2">Informasi cicilan</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div role="main" class="ui-content">
+			<h2 style="text-align: center;">Form Pinjaman : </h2>
+			<div class="ui-grid-b" align="center">
+				<div class="ui-block-a"></div>
+				<div class="ui-block-b">
+					<label for="jumPinjam">Jumlah Pinjaman : </label>
+				    <input type="number" data-clear-btn="true" name="jumPinjam" id="jumPinjam" value="">
+				</div>
+			</div>
+
+			<div class="ui-grid-b" align="center">
+				<div class="ui-block-a"></div>
+				<div class="ui-block-b">
+					<label for="waktuPinjam">Waktu Pinjaman : </label>
+				    <input type="number" data-clear-btn="true" name="waktuPinjam" id="waktuPinjam" value="">
+				</div>
+			</div>
+			
+
+			<button id="tambahBtn">Tambahkan Pinjaman</button>
+
+			<br><br>
+
+			<h2 style="text-align: center;">HASIL : </h2>
+			<ul data-role="listview" id="listPinjaman">
+				<!-- <li>
+					<div style="text-align: center;">
+						<h2>
+							Pinjaman ke 1 :<br><br>
+							Detail Pinjaman :<br>
+							Pinjaman  : 1.000.000, waktu pinjam : 6 Cicilan <br>
+							Total Pengembalian : 1.000.000 + (1.000.000 * 2% * 6) = 1.120.000 <br>
+						</h2>
+					</div>
+				</li> -->
+
+			</ul>
+			
+
+		</div>
+		<div data-role="footer">
+			<h4>by : C14180006</h4>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+	</script>
+
+</body>
+
+
+</html>
