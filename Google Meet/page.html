@@ -72,11 +72,57 @@
 		</div>
 	</div>
 
+	<div data-role="page" id="page2">
+		<div data-role="header" style="overflow: hidden;">
+			<h1>Informasi Cicilan</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#page1">Input Pinjaman</a></li>
+					<li><a href="#page2" class="ui-btn-active">Informasi cicilan</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div role="main" class="ui-content">
+			<h2 style="text-align: center;">List cicilan dari awal sampai selesai : </h2>
+			
+
+			<button id="lihatCicilan">Lihat Cicilan</button>
+
+			<div id="dataCicilan">
+				
+			</div>
+			
+
+		</div>
+		<div data-role="footer">
+			<h4>by : C14180006</h4>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 		var banyakPinjaman = 0;
 		var jumlahPinjaman = [];
 		var lamaPinjaman = [];
 		var totalPengembalian = [];
+
+		$("#lihatCicilan").on("click",function(){
+			//dikosongkan terlebih dahulu
+			$("#dataCicilan").html("");
+
+			for(var i = 0;i<banyakPinjaman;i++){
+				var header = "<h2>Pinjaman ke-"+(i+1)+" : </h2>";
+				var content = ""
+				for(var j = 0;j<lamaPinjaman[i];j++){
+					content += "<li>Cicilan ke-"+(j+1)+"= "+Number(totalPengembalian[i]/lamaPinjaman[i]).toFixed(2)+"</li>";
+				}
+				var close = "<br><br>";
+
+				console.log(header+content+close);
+
+				$("#dataCicilan").append(header+content+close);
+			}
+		});
 
 		$("#tambahBtn").on("click",function(){
 			var angkaPinjam = $("#jumPinjam").val();
