@@ -25,8 +25,8 @@
 			<h1>Input Pinjaman</h1>
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#page1" class="ui-btn-active">Input Pinjaman</a></li>
-					<li><a href="#page2">Informasi cicilan</a></li>
+					<li class="navtitle"><a href="#page1" class="ui-btn-active">Input Pinjaman</a></li>
+					<li class="navtitle"><a href="#page2">Informasi cicilan</a></li>
 				</ul>
 			</div>
 			
@@ -61,7 +61,7 @@
 			</div>
 			
 
-			<h2 style="text-align: center;">HASIL : </h2>
+			<h2 style="text-align: center;" id="hasil">HASIL : </h2>
 
 			<h3 style="text-align: center;">Jumlah Pinjaman : <span id="counter"></span></h3>
 
@@ -123,6 +123,24 @@
 		// $(document).delegate("#flip", "vclick", function() {
 		// 	    alert($("#flip").val());
 		// 	});
+
+		$("#hasil").on("tap", function(){
+            $(this).css("background-color","yellow");
+        });
+
+        $("h2").on("vmousedown", function() {
+            $(this).css("background-color","red");
+        });
+
+        $("h2").on("vmouseout", function() {
+            $(this).css("background-color","white");
+        });
+
+		$("h2").on("swipeleft",swipeleftHandler);
+
+		function swipeleftHandler( event ){
+			alert("swipeleft");
+		}
 
 		function check()
 		{
