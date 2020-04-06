@@ -30,7 +30,7 @@
 				<div class="ui-block-a"></div>
 				<div class="ui-block-b">
 					<label for="jumPinjam">Jumlah Pinjaman : </label>
-				    <input type="number" data-clear-btn="true" name="jumPinjam" id="jumPinjam" value="">
+				    <input type="number" data-clear-btn="true" name="jumPinjam" id="jumPinjam" value="" min="1">
 				</div>
 			</div>
 
@@ -38,7 +38,7 @@
 				<div class="ui-block-a"></div>
 				<div class="ui-block-b">
 					<label for="waktuPinjam">Waktu Pinjaman : </label>
-				    <input type="number" data-clear-btn="true" name="waktuPinjam" id="waktuPinjam" value="">
+				    <input type="number" data-clear-btn="true" name="waktuPinjam" id="waktuPinjam" value="" min="1">
 				</div>
 			</div>
 			
@@ -48,6 +48,9 @@
 			<br><br>
 
 			<h2 style="text-align: center;">HASIL : </h2>
+
+			<h3 style="text-align: center;">Jumlah Pinjaman : <span id="counter"></span></h3>
+
 			<ul data-role="listview" id="listPinjaman">
 				<!-- <li>
 					<div style="text-align: center;">
@@ -70,7 +73,72 @@
 	</div>
 
 	<script type="text/javascript">
-		
+		var banyakPinjaman = 0;
+		var jumlahPinjaman = [];
+		var lamaPinjaman = [];
+		var totalPengembalian = [];
+
+		$("#tambahBtn").on("click",function(){
+			var angkaPinjam = $("#jumPinjam").val();
+			var waktuPinjam = $("#waktuPinjam").val();
+
+			if(angkaPinjam == "" || waktuPinjam == "")
+			{
+				alert("Isi form secara lengkap terlebih dahulu!")
+			}
+			else
+			{
+				banyakPinjaman++;
+
+
+				var angkaPinjam = Number(angkaPinjam);
+				var waktuPinjam = Number(waktuPinjam);
+				var percent;
+
+				jumlahPinjaman.push(angkaPinjam);
+				lamaPinjaman.push(waktuPinjam);
+
+				if(waktuPinjam > 0 && waktuPinjam <= 6)
+				{
+					percent = 2;
+					var totalKembali = angkaPinjam + (angkaPinjam * (2/100) * waktuPinjam);
+					totalPengembalian.push(totalKembali);
+				}
+				else if(waktuPinjam >6 && waktuPinjam <=12)
+				{
+					percent = 1.5;
+					var totalKembali = angkaPinjam + (angkaPinjam * (1.5/100) * waktuPinjam);
+					totalPengembalian.push(totalKembali);
+				}
+				else if(waktuPinjam > 12)
+				{
+					percent = 1;
+					var totalKembali = angkaPinjam + (angkaPinjam * (1/100) * waktuPinjam);
+					totalPengembalian.push(totalKembali);
+				}
+				else
+				{
+					alert("Waktu Pinjama tidak valid!");
+					banyakPinjaman--;
+				}
+
+
+				$("#counter").html(banyakPinjaman);
+
+				var open = "<br><br><li><div style='text-align:center;'>";
+				var close = "</li></div><br>";
+
+				var content = "<h2> Pinjaman ke-"+banyakPinjaman+"<br><br>";
+				var content1 = "Pinjaman  : "+angkaPinjam+", waktu pinjam : "+waktuPinjam+" Cicilan <br>";
+				var content2 = "Total Pengembalian : "+angkaPinjam+" + ("+angkaPinjam+" * "+percent+"% * "+waktuPinjam+") = "+totalPengembalian[totalPengembalian.length-1];
+
+				var appendText = open+content+content1+content2+close;
+
+				$("#listPinjaman").append(appendText);
+			}
+
+			// $("#listNumbers").append(inputhtml);
+		})
 	</script>
 
 </body>
