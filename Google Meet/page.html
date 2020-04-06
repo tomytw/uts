@@ -11,6 +11,13 @@
 </head>
 <body>
 
+	<style type="text/css">
+		/*.pinjamanDiv
+		{
+			background-color: none;
+		}*/
+	</style>
+
 	
 
 	<div data-role="page" id="page1">
@@ -44,8 +51,15 @@
 			
 
 			<button id="tambahBtn">Tambahkan Pinjaman</button>
+			<p style="color: red;text-align: center;">*Lihat di bawah untuk list pinjaman yang sudah anda ditambahkan</p>
 
 			<br><br>
+
+			<div align="center">
+				<label for="flip">Highlight List Pinjaman:</label>
+				<input type="checkbox" data-role="flipswitch" name="flip" id="flip">
+			</div>
+			
 
 			<h2 style="text-align: center;">HASIL : </h2>
 
@@ -105,6 +119,29 @@
 		var jumlahPinjaman = [];
 		var lamaPinjaman = [];
 		var totalPengembalian = [];
+
+		// $(document).delegate("#flip", "vclick", function() {
+		// 	    alert($("#flip").val());
+		// 	});
+
+		function check()
+		{
+			if($("#flip").prop("checked") == true)
+			{
+				var pinjamanDivs = $(".pinjamanDiv");
+				console.log(pinjamanDivs);
+				pinjamanDivs.css("background-color","yellow");
+			}
+			else
+			{
+				var pinjamanDivs = $(".pinjamanDiv");
+				pinjamanDivs.css("background-color","white");
+			}
+		}
+
+		$("#flip").on("change",function(){
+			setInterval(check(),300);
+		});
 
 		$("#lihatCicilan").on("click",function(){
 			//dikosongkan terlebih dahulu
@@ -171,7 +208,7 @@
 
 				$("#counter").html(banyakPinjaman);
 
-				var open = "<br><br><li><div style='text-align:center;'>";
+				var open = "<br><br><li><div style='text-align:center;' class='pinjamanDiv'>";
 				var close = "</li></div><br>";
 
 				var content = "<h2> Pinjaman ke-"+banyakPinjaman+"<br><br>";
